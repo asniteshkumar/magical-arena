@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arena</title>
+    <link rel="stylesheet" href="/arena.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="exit">
+        <form action="/exit" method="post"><button>Exit Arena</button></form>
+      </div>
+      <h1>
+        <%= data.message=="" ? "Get ready for an epic battle!" : data.message %>
+      </h1>
+      <div id="con">
+        <div class="card">
+          <h2>Player 1: <span><%= player1.name %></span></h2>
+          <h3>Health: <span id="health"><%= player1.health %>%</span></h3>
+          <div>
+            <p>Strength <br /><span><%= player1.strength %></span></p>
+            <p>Attack <br /><span><%= player1.attack %></span></p>
+          </div>
+          <p></p>
+          <form action="/<%= player1.button %>" method="post">
+            <button style="background-color: <%= player1.button == "attack" ? "#FF204E" : "#3cfa3c" %>" <%= player1.button=="attack" ? toggle.attack : toggle.defend %>>
+              <%= player1.button == "attack"? "Attack":"Defend" %>
+            </button>
+          </form>
+        </div>
+        <div id="die">
+          <input
+            type="text"
+            value="<%= (data.roll==0) ? Math.floor(Math.random() * 6) + 1 : data.roll%>"
+          />
+        </div>
+        <div class="card">
+          <h2>Player 2: <span><%= player2.name %></span></h2>
+          <h3>Health: <span id="health"><%= player2.health %>%</span></h3>
+          <div>
+            <p>Strength <br /><span><%= player2.strength %></span></p>
+            <p>Attack <br /><span><%= player2.attack %></span></p>
+          </div>
+          <p></p>
+          <form action="/<%= player2.button %>" method="post">
+            <button style="background-color: <%= player2.button == "attack" ? "#FF204E" : "#3cfa3c" %>" <%= player2.button=="attack" ? toggle.attack : toggle.defend %>>
+              <%= player2.button == "attack"? "Attack":"Defend" %>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
